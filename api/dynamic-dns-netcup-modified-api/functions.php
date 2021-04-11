@@ -1,9 +1,7 @@
 <?php
 
-require_once 'config.php';
-
 //Declare possbile options
-$quiet = false;
+$quiet = QUIET;
 
 //Check passed options
 if(isset($argv)){
@@ -268,7 +266,8 @@ function updateDnsRecords($domainname, $customernr, $apikey, $apisessionid, $dns
     if ($result['status'] === SUCCESS) {
         return true;
     }
-
     outputStderr(sprintf("Error while updating DNS Records: %s Exiting.", $result['longmessage']));
     return false;
 }
+
+?>

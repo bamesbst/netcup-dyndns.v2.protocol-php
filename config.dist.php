@@ -31,4 +31,5 @@ define('APIURL', 'https://ccp.netcup.net/run/webservice/servers/endpoint.php?JSO
 define('SUSER', 'username');
 define('SPASSWORD', 'password');
 
-?>
+// Should the service be quiet? Set on true for protocol-use
+define('QUIET', false);
