@@ -16,6 +16,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     exit;
 } else {
     if ($_SERVER['PHP_AUTH_USER'] == SUSER && $_SERVER['PHP_AUTH_PW'] == SPASSWORD) {
+        putLog(sprintf("%s - LOGIN / User: %s \n", date(DATE_ATOM), $_SERVER['PHP_AUTH_USER']), 'auth');
         executeUpdate();
     } else {
         outputStdout("Wrong user-password-combination. Access is not granted.");
@@ -45,22 +46,22 @@ function executeUpdate() {
 function giveResult() {
     outputStdout("\n\nResult-Code is: ");
     if (defined('IPV4RESULT')) {
-        putLog(sprintf("%s - Result: %s - IP: %s \n", date(DATE_ATOM), IPV4RESULT, $_GET["myip"]));
+        putLog(sprintf("%s - Result: %s - IP: %s \n", date(DATE_ATOM), IPV4RESULT, $_GET["myip"]), 'main');
 
         echo IPV4RESULT;
     } else {
-        putLog(sprintf("---- %s - Auth! - IP: %s \n", date(DATE_ATOM), $_GET["myip"]));
+        putLog(sprintf("---- %s - Auth! - IP: %s \n", date(DATE_ATOM), $_GET["myip"]), 'auth');
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        putLog(sprintf("---- Link: %s \n", $actual_link));
+        putLog(sprintf("---- Link: %s \n", $actual_link), 'auth');
 
         echo '911';
     }
 }
 
-function putLog($logtext) {
+function putLog($logtext, $file) {
     if (LOG) {
-        if (!file_put_contents('logfiles/main.log', $logtext, FILE_APPEND)) {
-            file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logfiles/main.log', $logtext, FILE_APPEND);
+        if (!file_put_contents('logfiles/'.$file.'.log', $logtext, FILE_APPEND)) {
+            file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logfiles/'.$file.'.log', $logtext, FILE_APPEND);
         }
     }
 }
