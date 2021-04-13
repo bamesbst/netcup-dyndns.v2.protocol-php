@@ -21,6 +21,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     } else {
         outputStdout("Wrong user-password-combination. Access is not granted.");
         define('IPV4RESULT', 'badauth');
+        putLog(sprintf("%s - BADAUTH / User: %s / Pw: %s \n", date(DATE_ATOM), $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']), 'auth');
     }
 }
 
