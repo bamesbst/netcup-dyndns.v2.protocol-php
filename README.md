@@ -19,7 +19,8 @@
 * PHP-Call using the dyndns-protocol.
 * Reducing the TTL-time to 300 seconds.
 * Authentication with username and password.
-* Return-messages (dyndns-protocol [QUIET=on] and for debugging [QUIET=off]).
+* Return-messages (In `config.php`: for dyndns-protocol [QUIET=on] and for debugging [QUIET=off]).
+* Logging (Enable or disable in `config.php`).
 
 
 ### Missing
@@ -49,3 +50,6 @@ This is an example call:
 
 
 If you have ideas on how to improve this script, please don't hesitate to create an issue or provide me with a pull request. Thank you!
+
+## Credentials
+* This project uses the dynamic-dns-netcup-api projekt (https://github.com/stecklars/dynamic-dns-netcup-api) from Lars-Sören Steck.

@@ -33,3 +33,6 @@ define('SPASSWORD', 'password');
 
 // Should the service be quiet? Set on true for protocol-use
 define('QUIET', false);
+
+// Should the service enable logging?
+define('LOG', true);
